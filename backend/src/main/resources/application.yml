@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/clientehub}
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: ${PORT:8080}
+
+jwt:
+  secret: ${JWT_SECRET:4d5a7c8f2b1e3a9d6c0f4b8e2d1a5c9f3b7e0d4a8c2f6b0e4d8a1c5f9b3e7a0}
+  expiration-ms: 86400000  # 24h
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+  info:
+    title: ClienteHub API
+    version: 1.0.0
+    description: API RESTful para gerenciamento de clientes com autenticação JWT
+
+logging:
+  level:
+    com.clientehub: DEBUG
+    org.springframework.security: INFO
