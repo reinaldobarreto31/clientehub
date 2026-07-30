@@ -2,11 +2,38 @@
 
 > **CRUD completo de clientes** — Spring Boot 3 REST API + React 18 Dashboard
 
-![CI](https://github.com/reinaldobarreto31/clientehub/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/reinaldobarreto31/clientehub/actions/workflows/ci.yml/badge.svg)](https://github.com/reinaldobarreto31/clientehub/actions/workflows/ci.yml)
 ![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3-green?logo=spring)
 ![React](https://img.shields.io/badge/React-18-blue?logo=react)
 ![License](https://img.shields.io/badge/license-MIT-blue)
+
+---
+
+## 🚀 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-clientehub.onrender.com-brightgreen?logo=render)](https://clientehub.onrender.com)
+
+> **Credenciais padrão:** `admin` / `admin123`
+>
+> ⚠️ Hospedado no plano gratuito do Render — a primeira requisição pode levar ~30 s para o serviço "acordar".
+
+| Serviço | URL |
+|---|---|
+| **Frontend** | <https://clientehub.onrender.com> |
+| **Backend API** | <https://clientehub-api.onrender.com> |
+| **Swagger UI** | <https://clientehub-api.onrender.com/swagger-ui.html> |
+
+---
+
+## Deploy com um clique
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/reinaldobarreto31/clientehub)
+
+O arquivo [`render.yaml`](./render.yaml) provisiona automaticamente:
+- PostgreSQL 16 (free tier)
+- Backend Spring Boot via Docker
+- Frontend React como site estático
 
 ---
 
@@ -18,7 +45,7 @@
 | **Persistência** | JPA/Hibernate · PostgreSQL 16 |
 | **API Docs** | OpenAPI 3 / Swagger UI |
 | **Frontend** | React 18 · TypeScript · Tailwind CSS · React Query · shadcn/ui |
-| **Infra** | Docker Compose · GitHub Actions CI |
+| **Infra** | Docker Compose · Render · GitHub Actions CI |
 
 ---
 
@@ -127,13 +154,14 @@ clientehub/
 │   └── Dockerfile
 ├── frontend/                  # React 18 + Tailwind
 │   ├── src/
-│   │   ├── api/               # Axios client
+│   │   ├── api/               # Axios client (VITE_API_URL aware)
 │   │   ├── components/        # UI + Layout + Forms + Table
 │   │   ├── hooks/             # use-toast
 │   │   ├── pages/             # Login, Dashboard, Clientes
 │   │   └── types/             # TypeScript interfaces
 │   ├── package.json
 │   └── Dockerfile
+├── render.yaml                # One-click Render deployment
 ├── docker-compose.yml
 └── .github/workflows/ci.yml
 ```

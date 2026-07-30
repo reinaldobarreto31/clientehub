@@ -1,0 +1,62 @@
+##############################################################################
+# render.yaml — ClienteHub one-click deployment on Render.com
+#
+# Click the "Deploy to Render" button in the README, or go to
+# https://dashboard.render.com/select-repo and import this file.
+##############################################################################
+
+databases:
+  - name: clientehub-db
+    plan: free
+    databaseName: clientehub
+    user: clientehub
+
+services:
+  # ── Backend (Spring Boot 3 + JWT) ────────────────────────────────────────
+  - type: web
+    name: clientehub-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: clientehub-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: clientehub-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: clientehub-db
+          property: database
+      - key: DATABASE_USER
+        fromDatabase:
+          name: clientehub-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: clientehub-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: "8080"
+
+  # ── Frontend (React 18 + Tailwind — static site) ─────────────────────────
+  - type: web
+    name: clientehub
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    plan: free
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://clientehub-api.onrender.com/api
