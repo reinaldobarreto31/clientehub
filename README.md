@@ -145,11 +145,17 @@ clientehub/
 ### Login
 A tela de login com modo dark, credenciais padrão visíveis e validação de formulário.
 
+![Login](./docs/screenshots/login.png)
+
 ### Dashboard
 Cards com totais de clientes por status (Ativo / Inativo / Prospecto).
 
+![Dashboard](./docs/screenshots/dashboard.png)
+
 ### Gestão de Clientes
 Tabela paginada com busca, filtro por status, edição inline e exclusão.
+
+![Gestão de Clientes](./docs/screenshots/clientes.png)
 
 ---
 
